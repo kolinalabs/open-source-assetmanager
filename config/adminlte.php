@@ -242,6 +242,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'  => 'Fabricantes',
+            'route' => 'manufacturer.index',
+            'icon'  => 'fas fa-fw fa-user',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

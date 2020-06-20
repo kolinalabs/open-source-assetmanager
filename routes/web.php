@@ -24,3 +24,16 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::group([
+    'prefix' => 'manufacturer',
+    'middleware' => ['auth'],
+], function() {
+    Route::get('/', 'ManufacturerController@index')->name('manufacturer.index');
+    Route::get('/create', 'ManufacturerController@create')->name('manufacturer.create');
+    Route::post('/', 'ManufacturerController@store')->name('manufacturer.store');
+    Route::get('/{manufacturer}', 'ManufacturerController@show')->name('manufacturer.show');
+    Route::get('/{manufacturer}/edit', 'ManufacturerController@edit')->name('manufacturer.edit');
+    Route::put('/{manufacturer}', 'ManufacturerController@update')->name('manufacturer.update');
+    Route::delete('/{manufacturer}', 'ManufacturerController@destroy')->name('manufacturer.destroy');
+});
