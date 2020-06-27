@@ -38,6 +38,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
+                    <a href="{{ route('manufacturer.index') }}" class="btn btn-info">Voltar</a>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
