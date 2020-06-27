@@ -37,3 +37,10 @@ Route::group([
     Route::put('/{manufacturer}', 'ManufacturerController@update')->name('manufacturer.update');
     Route::delete('/{manufacturer}', 'ManufacturerController@destroy')->name('manufacturer.destroy');
 });
+
+Route::group([
+    'middleware' => ['auth'],
+], function() {
+    Route::resource('place', 'PlaceController');
+    Route::resource('category', 'CategoryController');
+});

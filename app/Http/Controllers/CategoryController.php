@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Manufacturer;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class ManufacturerController extends Controller
+class CategoryController extends Controller
 {
     // /**
     //  * Display a listing of the resource.
@@ -14,10 +14,10 @@ class ManufacturerController extends Controller
     //  */
     // public function index()
     // {
-    //     $manufacturers = Manufacturer::paginate(4);
+    //     $category = Category::paginate(4);
 
-    //     return view('manufacturers.index', [
-    //         'manufacturers' => $manufacturers
+    //     return view('categories.index', [
+    //         'category' => $category
     //     ]);
     // }
 
@@ -29,13 +29,13 @@ class ManufacturerController extends Controller
     public function index(Request $request)
     {
         $name = $request->name ?? null;
-        $manufacturers = Manufacturer::when($name, function ($query, $name) {
+        $categories = Category::when($name, function ($query, $name) {
             return $query->where('name', 'like', "%{$name}%");
         })
         ->paginate(4);
 
-        return view('manufacturers.index', [
-            'manufacturers' => $manufacturers
+        return view('categories.index', [
+            'categories' => $categories
         ]);
     }
 
@@ -46,10 +46,10 @@ class ManufacturerController extends Controller
     //  */
     // public function search(Request $request)
     // {
-    //     $manufacturers = Manufacturer::where('name', 'like', "%{$request->name}%")
+    //     $category = Category::where('name', 'like', "%{$request->name}%")
     //                                  ->get();
-    //     return view('manufacturers.index', [
-    //         'manufacturers' => $manufacturers
+    //     return view('categories.index', [
+    //         'category' => $category
     //     ]);
     // }
 
@@ -60,7 +60,7 @@ class ManufacturerController extends Controller
      */
     public function create()
     {
-        return view('manufacturers.form');
+        return view('categories.form');
     }
 
     /**
@@ -71,21 +71,21 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
-        $manufacturer = new Manufacturer;
-        $manufacturer->name = $request->name;
-        $manufacturer->save();
-        return redirect()->route('manufacturer.index');
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+        return redirect()->route('category.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Manufacturer  $manufacturer
+     * @param  Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Manufacturer $manufacturer)
+    public function show(Category $category)
     {
-        return view('manufacturers.show', ['manufacturer' => $manufacturer]);
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
@@ -94,9 +94,9 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Manufacturer $manufacturer)
+    public function edit(Category $category)
     {
-        return view('manufacturers.form', ['manufacturer' => $manufacturer]);
+        return view('categories.form', ['category' => $category]);
     }
 
     /**
@@ -106,10 +106,10 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manufacturer $manufacturer)
+    public function update(Request $request, Category $category)
     {
-        $manufacturer->update($request->all());
-        return redirect()->route('manufacturer.index');
+        $category->update($request->all());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -118,9 +118,9 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manufacturer $manufacturer)
+    public function destroy(Category $category)
     {
-        $manufacturer->delete();
+        $category->delete();
         return response()->json([]);
     }
 }

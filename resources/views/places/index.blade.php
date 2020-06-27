@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Fabricantes')
+@section('title', 'Locais')
 
 @section('content_header')
 <div class="row">
 
     <div class="col-6">
-        <h1 class="m-0 text-dark">Fabricantes</h1>
+        <h1 class="m-0 text-dark">Locais</h1>
     </div>
 
     <div class="col-6 text-right">
-        <a href="{{ route('manufacturer.create') }}" class="btn btn-primary" >
+        <a href="{{ route('place.create') }}" class="btn btn-primary" >
             <i class="fa fa-plus"></i>
-            Adicionar Fabricante
+            Adicionar Local
         </a>
     </div>
 </div>
@@ -23,9 +23,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem de Fabricantes</h3>
+                    <h3 class="card-title">Listagem de Locais</h3>
                     <div class="card-tools">
-                        <form action="{{ route('manufacturer.index') }}" method="get" class="input-group input-group-sm" style="width: 350px;">
+                        <form action="{{ route('place.index') }}" method="get" class="input-group input-group-sm" style="width: 350px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
                             <div class="input-group-append">
@@ -53,28 +53,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse($manufacturers as $manufacturer)
+                        @forelse($places as $place)
                             <tr>
                                 <td>
                                     #
                                 </td>
                                 <td>
                                     <a>
-                                        {{ $manufacturer->name }}
+                                        {{ $place->name }}
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('manufacturer.show', $manufacturer) }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('place.show', $place) }}">
                                         <i class="fas fa-folder">
                                         </i>
                                         Visualizar
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{ route('manufacturer.edit', $manufacturer) }}">
+                                    <a class="btn btn-info btn-sm" href="{{ route('place.edit', $place) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Editar
                                     </a>
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="manufacturersDelete('{{ route('manufacturer.destroy', $manufacturer) }}')">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="placesDelete('{{ route('place.destroy', $place) }}')">
                                         <i class="fas fa-trash">
                                         </i>
                                         Excluir
@@ -95,7 +95,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                    {{ $manufacturers->appends(request()->all())->links() }}
+                    {{ $places->appends(request()->all())->links() }}
                 </div>
             </div>
         </div>
@@ -104,10 +104,10 @@
 
 @section('js')
     <script>
-        function manufacturersDelete(url)
+        function placesDelete(url)
         {
             swal({
-                title: "Tem certeza que deseja excluir este fabricante?",
+                title: "Tem certeza que deseja excluir este local?",
                 text: "Esta ação não poderá ser desfeita",
                 icon: "warning",
                 buttons: true,
@@ -124,7 +124,7 @@
                             })
                         },
                         success: () => {
-                            swal("Fabricante excluído com sucesso!", {
+                            swal("Local excluído com sucesso!", {
                                 icon: "success"
                             })
                             .then(() => {
@@ -133,7 +133,7 @@
                             )
                         },
                         error: () => {
-                            swal("Falha ao excluir fabricante!", {
+                            swal("Falha ao excluir local!", {
                                 icon: "error",
                             })
                         }

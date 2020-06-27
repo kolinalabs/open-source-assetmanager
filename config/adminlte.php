@@ -244,7 +244,17 @@ return [
         [
             'text'  => 'Fabricantes',
             'route' => 'manufacturer.index',
-            'icon'  => 'fas fa-fw fa-user',
+            'icon'  => 'fas fa-fw fa-industry',
+        ],
+        [
+            'text'  => 'Locais',
+            'route' => 'place.index',
+            'icon'  => 'fas fa-fw fa-map',
+        ],
+        [
+            'text'  => 'Categorias',
+            'route' => 'category.index',
+            'icon'  => 'fas fa-fw fa-folder-open',
         ],
         [
             'text'        => 'pages',
