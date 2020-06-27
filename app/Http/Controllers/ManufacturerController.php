@@ -7,18 +7,51 @@ use Illuminate\Http\Request;
 
 class ManufacturerController extends Controller
 {
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     $manufacturers = Manufacturer::paginate(4);
+
+    //     return view('manufacturers.index', [
+    //         'manufacturers' => $manufacturers
+    //     ]);
+    // }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $manufacturers = Manufacturer::all();
+        $name = $request->name ?? null;
+        $manufacturers = Manufacturer::when($name, function ($query, $name) {
+            return $query->where('name', 'like', "%{$name}%");
+        })
+        ->paginate(4);
+
         return view('manufacturers.index', [
             'manufacturers' => $manufacturers
         ]);
     }
+
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function search(Request $request)
+    // {
+    //     $manufacturers = Manufacturer::where('name', 'like', "%{$request->name}%")
+    //                                  ->get();
+    //     return view('manufacturers.index', [
+    //         'manufacturers' => $manufacturers
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -88,6 +121,6 @@ class ManufacturerController extends Controller
     public function destroy(Manufacturer $manufacturer)
     {
         $manufacturer->delete();
-        return redirect()->route('manufacturer.index');
+        return response()->json([]);
     }
 }

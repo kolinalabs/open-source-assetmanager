@@ -405,6 +405,17 @@ return [
             ],
         ],
         [
+            'name' => 'Sweetalert',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//unpkg.com/sweetalert/dist/sweetalert.min.js',
+                ],
+            ],
+        ],
+        [
             'name' => 'Sweetalert2',
             'active' => false,
             'files' => [
