@@ -26,7 +26,7 @@
                     <h3 class="card-title">Listagem de Fabricantes</h3>
                     <div class="card-tools">
                         <form action="{{ route('manufacturer.index') }}" method="get" class="input-group input-group-sm" style="width: 350px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <input type="text" name="name" class="form-control float-right" placeholder="Search">
 
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
