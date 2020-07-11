@@ -3,7 +3,7 @@
 @section('title', (isset($category) ? 'Editar' : 'Novo').' Categoria')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ (isset($category) ? 'Editar' : 'Novo') }} Categoria</h1>
+    <h1 class="m-0 text-dark">{{ (isset($category) ? 'Editar' : 'Nova') }} Categoria</h1>
 @stop
 
 @section('content')
