@@ -126,8 +126,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="newOccurrenceForm" action="asdf" class="row">
+                            <form id="newOccurrenceForm" action="{{ route('occurrence.store') }}" method="POST" class="row">
                                 <input type="hidden" name="equipment_id" value="{{ $equipment->id }}">
+                                <label for="occurred_at">Data da ocorrência</label>
+                                <input type="date" class="form-control" name='occurred_at' id='occurred_at'>
                                 <label for="description">Descrição</label>
                                 <textarea
                                     name="description"
@@ -136,8 +138,6 @@
                                     required
                                     placeholder="Adicione a descrição da ocorrência"
                                 ></textarea>
-                                <label for="occurred_at">Data da ocorrência</label>
-                                <input type="date" class="form-control" name='occurred_at' id='occurred_at'>
                             </form>
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -213,6 +213,7 @@
             $.ajax({
                 url: form.attr('action'),
                 method: form.attr('method'),
+                data: form.serialize(),
                 beforeSend: () => {
                     // swal("Aguarde", {
                     //     icon: "info",
@@ -231,7 +232,7 @@
                         icon: "error",
                     })
                 }
-            }
+            })
         }
     </script>
 @endsection

@@ -259,7 +259,7 @@ return [
         [
             'text'  => 'Equipamentos',
             'route' => 'equipment.index',
-            'icon'  => 'fas fa-fw fa-folder-open',
+            'icon'  => 'fas fa-fw fa-laptop',
         ],
         // [
         //     'text'        => 'pages',
