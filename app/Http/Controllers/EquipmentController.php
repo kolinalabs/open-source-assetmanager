@@ -20,7 +20,7 @@ class EquipmentController extends Controller
         })
         ->paginate(4);
 
-        return view('equipments.index', [
+        return view('equipment.index', [
             'equipments' => $equipments
         ]);
     }
@@ -32,7 +32,7 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        return view('equipments.form');
+        return view('equipment.form');
     }
 
     /**
@@ -44,16 +44,19 @@ class EquipmentController extends Controller
     public function store(Request $request)
     {
         $equipment = new Equipment;
-        $equipment->place_id         = $request->place_id;
-        $equipment->manufacturer_id  = $request->manufacturer_id;
-        $equipment->category_id      = $request->category_id;
-        $equipment->model            = $request->model;
-        $equipment->description      = $request->description;
-        $equipment->state            = $request->state;
-        $equipment->patrimony        = $request->patrimony;
-        $equipment->aquisition_value = $request->aquisition_value;
+        $equipment->place_id          = $request->place_id;
+        $equipment->manufacturer_id   = $request->manufacturer_id;
+        $equipment->category_id       = $request->category_id;
+        $equipment->model             = $request->model;
+        $equipment->description       = $request->description;
+        $equipment->state             = $request->state;
+        $equipment->patrimony         = $request->patrimony;
+        $equipment->acquisition_value = $request->acquisition_value;
         $equipment->save();
-        return redirect()->route('equipment.index');
+
+        return redirect()->route('equipment.edit', [
+            'equipment' => $equipment->id
+        ]);
     }
 
     /**
@@ -64,7 +67,7 @@ class EquipmentController extends Controller
      */
     public function show(Equipment $equipment)
     {
-        return view('equipments.show', ['equipment' => $equipment]);
+        return view('equipment.show', ['equipment' => $equipment]);
     }
 
     /**
@@ -75,7 +78,9 @@ class EquipmentController extends Controller
      */
     public function edit(Equipment $equipment)
     {
-        return view('equipments.form', ['equipment' => $equipment]);
+        $equipment->load('occurrences');
+
+        return view('equipment.form', ['equipment' => $equipment]);
     }
 
     /**
@@ -88,7 +93,10 @@ class EquipmentController extends Controller
     public function update(Request $request, Equipment $equipment)
     {
         $equipment->update($request->all());
-        return redirect()->route('equipment.index');
+
+        return redirect()->route('equipment.edit', [
+            'equipment' => $equipment->id
+        ]);
     }
 
     /**
