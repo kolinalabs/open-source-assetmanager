@@ -44,5 +44,6 @@ Route::group([
     Route::resource('place', 'PlaceController');
     Route::resource('category', 'CategoryController');
     Route::resource('equipment', 'EquipmentController');
+    Route::get('occurrence/{equipment}/list', 'OccurrenceController@list')->name('occurrence.list');
     Route::resource('occurrence', 'OccurrenceController');
 });

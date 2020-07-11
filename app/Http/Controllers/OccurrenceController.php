@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipment;
 use App\Models\Occurrence;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,22 @@ class OccurrenceController extends Controller
         //
     }
 
+    public function list(Equipment $equipment)
+    {
+        return view('equipment.occurrences._list', [
+            'occurrences' => $equipment->occurrences
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $equipmentId = $request->equipment;
+        return view('equipment.occurrences._form', ['equipment' => $equipmentId]);
     }
 
     /**
@@ -61,9 +70,9 @@ class OccurrenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Occurrence $occurrence)
     {
-        //
+        return view('equipment.occurrences._form', compact('occurrence'));
     }
 
     /**
@@ -73,9 +82,10 @@ class OccurrenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Occurrence $occurrence)
     {
-        //
+        $occurrence->update($request->post());
+        return response()->json([]);
     }
 
     /**
@@ -84,8 +94,10 @@ class OccurrenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Occurrence $occurrence)
     {
-        //
+        $occurrence->delete();
+
+        return response()->json([]);
     }
 }
