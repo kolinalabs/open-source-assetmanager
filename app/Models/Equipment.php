@@ -29,6 +29,11 @@ class Equipment extends Model
         'acquisition_value',
     ];
 
+    public function getTranslatedStateAttribute()
+    {
+        return trans('database.equipment.state.'.$this->state);
+    }
+
     /**
      * Relationship with occurrences table
      *
