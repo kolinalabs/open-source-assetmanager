@@ -12,6 +12,8 @@ class Occurrence extends Model
         'occurred_at',
     ];
 
+    protected $dates = ['occurred_at'];
+
     public function index()
     {
         return $this->all();
