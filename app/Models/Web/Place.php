@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Web;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Place extends Model
 {
     protected $fillable = [
         'name',
-        'position',
-        'description',
     ];
 
     public function index()

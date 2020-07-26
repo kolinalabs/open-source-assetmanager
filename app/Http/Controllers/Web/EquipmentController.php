@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Equipment;
+use App\Http\Controllers\Controller;
+use App\Models\Web\Equipment;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller

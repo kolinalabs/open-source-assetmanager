@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Web\HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -29,21 +29,21 @@ Route::group([
     'prefix' => 'manufacturer',
     'middleware' => ['auth'],
 ], function() {
-    Route::get('/', 'ManufacturerController@index')->name('manufacturer.index');
-    Route::get('/create', 'ManufacturerController@create')->name('manufacturer.create');
-    Route::post('/', 'ManufacturerController@store')->name('manufacturer.store');
-    Route::get('/{manufacturer}', 'ManufacturerController@show')->name('manufacturer.show');
-    Route::get('/{manufacturer}/edit', 'ManufacturerController@edit')->name('manufacturer.edit');
-    Route::put('/{manufacturer}', 'ManufacturerController@update')->name('manufacturer.update');
-    Route::delete('/{manufacturer}', 'ManufacturerController@destroy')->name('manufacturer.destroy');
+    Route::get('/', 'Web\ManufacturerController@index')->name('manufacturer.index');
+    Route::get('/create', 'Web\ManufacturerController@create')->name('manufacturer.create');
+    Route::post('/', 'Web\ManufacturerController@store')->name('manufacturer.store');
+    Route::get('/{manufacturer}', 'Web\ManufacturerController@show')->name('manufacturer.show');
+    Route::get('/{manufacturer}/edit', 'Web\ManufacturerController@edit')->name('manufacturer.edit');
+    Route::put('/{manufacturer}', 'Web\ManufacturerController@update')->name('manufacturer.update');
+    Route::delete('/{manufacturer}', 'Web\ManufacturerController@destroy')->name('manufacturer.destroy');
 });
 
 Route::group([
     'middleware' => ['auth'],
 ], function() {
-    Route::resource('place', 'PlaceController');
-    Route::resource('category', 'CategoryController');
-    Route::resource('equipment', 'EquipmentController');
-    Route::get('occurrence/{equipment}/list', 'OccurrenceController@list')->name('occurrence.list');
-    Route::resource('occurrence', 'OccurrenceController');
+    Route::resource('place', 'Web\PlaceController');
+    Route::resource('category', 'Web\CategoryController');
+    Route::resource('equipment', 'Web\EquipmentController');
+    Route::get('occurrence/{equipment}/list', 'Web\OccurrenceController@list')->name('occurrence.list');
+    Route::resource('occurrence', 'Web\OccurrenceController');
 });

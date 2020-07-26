@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Manufacturer;
+use App\Http\Controllers\Controller;
+use App\Models\Web\Place;
 use Illuminate\Http\Request;
 
-class ManufacturerController extends Controller
+class PlaceController extends Controller
 {
     // /**
     //  * Display a listing of the resource.
@@ -14,10 +15,10 @@ class ManufacturerController extends Controller
     //  */
     // public function index()
     // {
-    //     $manufacturers = Manufacturer::paginate(4);
+    //     $place = Place::paginate(4);
 
-    //     return view('manufacturers.index', [
-    //         'manufacturers' => $manufacturers
+    //     return view('places.index', [
+    //         'place' => $place
     //     ]);
     // }
 
@@ -29,13 +30,13 @@ class ManufacturerController extends Controller
     public function index(Request $request)
     {
         $name = $request->name ?? null;
-        $manufacturers = Manufacturer::when($name, function ($query, $name) {
+        $places = Place::when($name, function ($query, $name) {
             return $query->where('name', 'like', "%{$name}%");
         })
         ->paginate(4);
 
-        return view('manufacturers.index', [
-            'manufacturers' => $manufacturers
+        return view('places.index', [
+            'places' => $places
         ]);
     }
 
@@ -46,10 +47,10 @@ class ManufacturerController extends Controller
     //  */
     // public function search(Request $request)
     // {
-    //     $manufacturers = Manufacturer::where('name', 'like', "%{$request->name}%")
+    //     $place = Place::where('name', 'like', "%{$request->name}%")
     //                                  ->get();
-    //     return view('manufacturers.index', [
-    //         'manufacturers' => $manufacturers
+    //     return view('places.index', [
+    //         'place' => $place
     //     ]);
     // }
 
@@ -60,7 +61,7 @@ class ManufacturerController extends Controller
      */
     public function create()
     {
-        return view('manufacturers.form');
+        return view('places.form');
     }
 
     /**
@@ -71,21 +72,21 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
-        $manufacturer = new Manufacturer;
-        $manufacturer->name = $request->name;
-        $manufacturer->save();
-        return redirect()->route('manufacturer.index');
+        $place = new Place;
+        $place->name = $request->name;
+        $place->save();
+        return redirect()->route('place.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Manufacturer  $manufacturer
+     * @param  Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function show(Manufacturer $manufacturer)
+    public function show(Place $place)
     {
-        return view('manufacturers.show', ['manufacturer' => $manufacturer]);
+        return view('places.show', ['place' => $place]);
     }
 
     /**
@@ -94,9 +95,9 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Manufacturer $manufacturer)
+    public function edit(Place $place)
     {
-        return view('manufacturers.form', ['manufacturer' => $manufacturer]);
+        return view('places.form', ['place' => $place]);
     }
 
     /**
@@ -106,10 +107,10 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manufacturer $manufacturer)
+    public function update(Request $request, Place $place)
     {
-        $manufacturer->update($request->all());
-        return redirect()->route('manufacturer.index');
+        $place->update($request->all());
+        return redirect()->route('place.index');
     }
 
     /**
@@ -118,9 +119,9 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manufacturer $manufacturer)
+    public function destroy(Place $place)
     {
-        $manufacturer->delete();
+        $place->delete();
         return response()->json([]);
     }
 }

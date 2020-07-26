@@ -19,26 +19,26 @@
                         <div class="row">
                             <div class="text-bold col-2">Nome equipamento: </div>
                             <div class="col-10" id="name">
-                                {{ $category->model ?? '' }}
+                                {{ $equipment->model ?? '' }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="text-bold col-2">Registro criado em: </div>
                             <div class="col-10" id="name">
-                                {{ $category->created_at->format('d/m/Y H:i:s') }}
+                                {{ $equipment->created_at->format('d/m/Y H:i:s') }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="text-bold col-2">Registro alterado em: </div>
                             <div class="col-10" id="name">
-                                {{ $category->updated_at->format('d/m/Y H:i:s') }}
+                                {{ $equipment->updated_at->format('d/m/Y H:i:s') }}
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <a href="{{ route('category.index') }}" class="btn btn-info">Voltar</a>
+                    <a href="{{ route('equipment.index') }}" class="btn btn-info">Voltar</a>
                 </div>
             </div>
         </div>

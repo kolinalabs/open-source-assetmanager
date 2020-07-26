@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Web;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Place extends Model
+class Manufacturer extends Model
 {
     protected $fillable = [
         'name',
@@ -13,5 +13,6 @@ class Place extends Model
     public function index()
     {
         return $this->all();
+
     }
 }

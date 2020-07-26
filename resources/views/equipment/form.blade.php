@@ -43,7 +43,7 @@
                             <label for="state">Situação</label>
                             <select name="state" id="state" class="form-control" required>
                                 <option value="">Selecione</option>
-                                @foreach (\App\Models\Equipment::STATES as $state)
+                                @foreach (\App\Models\Web\Equipment::STATES as $state)
                                     <option
                                         value="{{ $state }}"
                                         {{ ($equipment->state ?? null) === $state ? 'selected="selected"' : '' }}
@@ -72,7 +72,7 @@
                             <label for="place_id">Local</label>
                             <select name="place_id" id="place_id" class="form-control" required>
                                 <option value="">Selecione</option>
-                                @foreach (\App\Models\Place::all() as $place)
+                                @foreach (\App\Models\Web\Place::all() as $place)
                                     <option
                                         value="{{ $place->id }}"
                                         {{ ($equipment->place_id ?? null) === $place->id ? 'selected="selected"' : '' }}
@@ -84,7 +84,7 @@
                             <label for="manufacturer_id">Fabricante</label>
                             <select name="manufacturer_id" id="manufacturer_id" class="form-control" required>
                                 <option value="">Selecione</option>
-                                @foreach (\App\Models\Manufacturer::all() as $manufacturer)
+                                @foreach (\App\Models\Web\Manufacturer::all() as $manufacturer)
                                     <option
                                         value="{{ $manufacturer->id }}"
                                         {{ ($equipment->manufacturer_id ?? null) === $manufacturer->id ? 'selected="selected"' : '' }}
@@ -96,7 +96,7 @@
                             <label for="category_id">Categoria</label>
                             <select name="category_id" id="category_id" class="form-control" required>
                                 <option value="">Selecione</option>
-                                @foreach (\App\Models\Category::all() as $category)
+                                @foreach (\App\Models\Web\Category::all() as $category)
                                     <option
                                         value="{{ $category->id }}"
                                         {{ ($equipment->category_id ?? null) === $category->id ? 'selected="selected"' : '' }}

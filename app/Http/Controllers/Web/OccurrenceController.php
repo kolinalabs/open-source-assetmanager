@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Equipment;
-use App\Models\Occurrence;
+use App\Http\Controllers\Controller;
+use App\Models\Web\Equipment;
+use App\Models\Web\Occurrence;
 use Illuminate\Http\Request;
 
 class OccurrenceController extends Controller

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Place;
+use App\Http\Controllers\Controller;
+use App\Models\Web\Manufacturer;
 use Illuminate\Http\Request;
 
-class PlaceController extends Controller
+class ManufacturerController extends Controller
 {
     // /**
     //  * Display a listing of the resource.
@@ -14,10 +15,10 @@ class PlaceController extends Controller
     //  */
     // public function index()
     // {
-    //     $place = Place::paginate(4);
+    //     $manufacturers = Manufacturer::paginate(4);
 
-    //     return view('places.index', [
-    //         'place' => $place
+    //     return view('manufacturers.index', [
+    //         'manufacturers' => $manufacturers
     //     ]);
     // }
 
@@ -29,13 +30,13 @@ class PlaceController extends Controller
     public function index(Request $request)
     {
         $name = $request->name ?? null;
-        $places = Place::when($name, function ($query, $name) {
+        $manufacturers = Manufacturer::when($name, function ($query, $name) {
             return $query->where('name', 'like', "%{$name}%");
         })
         ->paginate(4);
 
-        return view('places.index', [
-            'places' => $places
+        return view('manufacturers.index', [
+            'manufacturers' => $manufacturers
         ]);
     }
 
@@ -46,10 +47,10 @@ class PlaceController extends Controller
     //  */
     // public function search(Request $request)
     // {
-    //     $place = Place::where('name', 'like', "%{$request->name}%")
+    //     $manufacturers = Manufacturer::where('name', 'like', "%{$request->name}%")
     //                                  ->get();
-    //     return view('places.index', [
-    //         'place' => $place
+    //     return view('manufacturers.index', [
+    //         'manufacturers' => $manufacturers
     //     ]);
     // }
 
@@ -60,7 +61,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('places.form');
+        return view('manufacturers.form');
     }
 
     /**
@@ -71,21 +72,21 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        $place = new Place;
-        $place->name = $request->name;
-        $place->save();
-        return redirect()->route('place.index');
+        $manufacturer = new Manufacturer;
+        $manufacturer->name = $request->name;
+        $manufacturer->save();
+        return redirect()->route('manufacturer.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Place  $place
+     * @param  Manufacturer  $manufacturer
      * @return \Illuminate\Http\Response
      */
-    public function show(Place $place)
+    public function show(Manufacturer $manufacturer)
     {
-        return view('places.show', ['place' => $place]);
+        return view('manufacturers.show', ['manufacturer' => $manufacturer]);
     }
 
     /**
@@ -94,9 +95,9 @@ class PlaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Place $place)
+    public function edit(Manufacturer $manufacturer)
     {
-        return view('places.form', ['place' => $place]);
+        return view('manufacturers.form', ['manufacturer' => $manufacturer]);
     }
 
     /**
@@ -106,10 +107,10 @@ class PlaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Place $place)
+    public function update(Request $request, Manufacturer $manufacturer)
     {
-        $place->update($request->all());
-        return redirect()->route('place.index');
+        $manufacturer->update($request->all());
+        return redirect()->route('manufacturer.index');
     }
 
     /**
@@ -118,9 +119,9 @@ class PlaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Place $place)
+    public function destroy(Manufacturer $manufacturer)
     {
-        $place->delete();
+        $manufacturer->delete();
         return response()->json([]);
     }
 }
